@@ -1,5 +1,5 @@
 import os
-from model.VGNET import Model
+from model.VGNET import Model as vgmodel
 import preprocessing
 import tensorflow
 from model.Alex import AlexNet
@@ -14,7 +14,7 @@ class model_function():
   def VGGnet():
     train_gen,val_gen=preprocessing.data.VGGnet()
     targetSize = (150, 150)
-    VGGNET_model=Model.VGGnet_model(targetSize)
+    VGGNET_model=vgmodel.VGGnet_model(targetSize)
 
     epochs_count = 1
     History = VGGNET_model.fit(train_gen,
@@ -50,6 +50,7 @@ class model_function():
       loss_record.append(loss.item())
       print(f'Epcoh [{epoch+1}/5], Loss: {loss.item():.4f}')
     return(output,loss_record)
+  
   def LSTM():
     model.x
     model.fit(X_train, Y_train, epochs=10,verbose=1,validation_data=(X_test, Y_test))
